@@ -6,6 +6,13 @@ import java.util.Date;
 public class Data {
 
     private Integer dia, mes, ano;
+    Date data = new Date();
+    SimpleDateFormat formatarDia = new SimpleDateFormat("d");
+    SimpleDateFormat formatarMes = new SimpleDateFormat("M");
+    SimpleDateFormat formatarAno = new SimpleDateFormat("y");
+    int diaAtual = Integer.parseInt(formatarDia.format(data));
+    int mesAtual = Integer.parseInt(formatarMes.format(data));
+    int anoAtual = Integer.parseInt(formatarAno.format(data));
 
     public Data(Integer dia, Integer mes, Integer ano) {
 
@@ -21,7 +28,7 @@ public class Data {
 
         }
 
-        if (ano > 2020) {
+        if (ano > anoAtual) {
 
             System.out.println("Ano invalido");
 
@@ -34,7 +41,7 @@ public class Data {
                 this.mes = mes;
 
                 this.ano = ano;
-                calculoIdade(dia, mes, ano);
+                
 
             } else {
                 System.out.println("data invalida");
@@ -59,7 +66,6 @@ public class Data {
             } else {
 
                 dataCorreta = false;
-
             }
 
         }
@@ -102,6 +108,7 @@ public class Data {
             }
         }
         if (dataCorreta) {
+            calculoIdade(dia, mes, ano);
             return true;
         } else {
             return false;
@@ -111,32 +118,24 @@ public class Data {
     }
 
     public void calculoIdade(Integer diaV, Integer mesV, Integer anoV) {
-        Date d = new Date();
-        SimpleDateFormat formatarDia = new SimpleDateFormat("d");
-        SimpleDateFormat formatarMes = new SimpleDateFormat("M");
-        SimpleDateFormat formatarAno = new SimpleDateFormat("y");
 
-        int diaAtual = Integer.parseInt(formatarDia.format(d));
-        int mesAtual = Integer.parseInt(formatarMes.format(d));
-        int anoAtual = Integer.parseInt(formatarAno.format(d));
+        int Idade = anoAtual - anoV;
 
-       
-        int diaAniv = diaAtual - diaV;
-        int mesAniv = mesAtual - mesV;
-        int anoAniv = anoAtual - anoV;
+        if (mesV > mesAtual) {
+            Idade -= 1;
+        } else {
+            if (diaV > diaAtual) {
+                Idade -= 1;
+            }
 
-        System.out.println("dia atual " + diaAniv);
-        System.out.println("mes atual " + mesAniv);
-        System.out.println("ano atual " + anoAniv);
-
-        System.out.println("idade : " + anoAniv);
+        }
+        System.out.println("idade : " + Idade + " anos");
 
     }
 
     public static void main(String[] args) {
-        Data d = new Data(1, 6, 1998);
+        Data objetoData = new Data(1, 10, 2021);
 
-// TODO code application logic here
     }
 
 }
