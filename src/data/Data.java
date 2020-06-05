@@ -35,6 +35,20 @@ public class Data {
                 System.out.println("Ano invalido");
                 break;
             }
+            if (anoP == anoAtual) {
+                if (mesP > mesAtual) {
+                    System.out.println("entrei aki tio mes> ");
+                    System.out.println("Data invalida 1");
+                    break;
+                }
+                if (mesP == mesAtual) {
+                    if (diaP > diaAtual) {
+                        System.out.println("Data invalida 2");
+                        break;
+                    }
+                }
+
+            }
             try {
                 if (verificaData(diaP, mesP, anoP)) {
 
@@ -46,11 +60,11 @@ public class Data {
                     calculoIdade(dia, mes, ano);
 
                 } else {
-                    System.out.println("data invalida !");
+                    System.out.println("Data invalida !");
                     break;
                 }
             } catch (Exception e) {
-                System.out.println("data incorreta !");
+                System.out.println("Data incorreta !");
                 break;
             }
             ;
@@ -91,7 +105,7 @@ public class Data {
 
         if (mesV == 2) {
 
-            if (anoV % 4 == 0) {
+            if (anoV % 4 == 0 && anoV % 100 != 0 || anoV % 400 == 0) { // regra do ano bissexto
 
                 if (diaV <= 29) {
 
@@ -172,7 +186,12 @@ public class Data {
          }
          
          */
-        Data objData = new Data(24, 2, 2018);
+        Data objData = new Data(5, 6, 2012); //não é bi
+        Data objData1 = new Data(1, 6, 2012); //não é bi
+        Data objData2= new Data(30, 6, 2012); //não é bi
+        Data objDat3 = new Data(31, 6, 2012); //não é bi
+        Data objData4 = new Data(32, 6, 2012); //não é bi
+
     }
 
 }
