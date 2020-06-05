@@ -2,10 +2,11 @@ package data;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Data {
 
-    private Integer dia, mes, ano;
+    int dia, mes, ano = 0;
     Date data = new Date();
     SimpleDateFormat formatarDia = new SimpleDateFormat("d");
     SimpleDateFormat formatarMes = new SimpleDateFormat("M");
@@ -14,40 +15,40 @@ public class Data {
     int mesAtual = Integer.parseInt(formatarMes.format(data));
     int anoAtual = Integer.parseInt(formatarAno.format(data));
 
-    public Data(Integer dia, Integer mes, Integer ano) {
+    public Data(Integer diaP, Integer mesP, Integer anoP) {
 
-        if (mes < 1 || mes > 12) {
+        if (mesP < 1 || mesP > 12) {
 
             System.out.println("Informe um mes valido.");
 
         }
 
-        if (dia < 1 && ano > 31) {
+        if (diaP < 1 && anoP > 31) {
 
             System.out.println("Tem que ser de 1 a 31!!!");
 
         }
 
-        if (ano > anoAtual) {
+        if (anoP > anoAtual) {
 
             System.out.println("Ano invalido");
 
         }
         try {
-            if (verificaData(dia, mes, ano)) {
+            if (verificaData(diaP, mesP, anoP)) {
 
-                this.dia = dia;
+                this.dia = diaP;
 
-                this.mes = mes;
+                this.mes = mesP;
 
-                this.ano = ano;
-                
+                this.ano = anoP;
+                calculoIdade(dia, mes, ano);
 
             } else {
-                System.out.println("data invalida");
+                System.out.println("data invalida !");
             }
         } catch (Exception e) {
-            System.out.println("data incorreta");
+            System.out.println("data incorreta !");
         }
         ;
 
@@ -108,7 +109,6 @@ public class Data {
             }
         }
         if (dataCorreta) {
-            calculoIdade(dia, mes, ano);
             return true;
         } else {
             return false;
@@ -117,25 +117,56 @@ public class Data {
 
     }
 
-    public void calculoIdade(Integer diaV, Integer mesV, Integer anoV) {
+    public void calculoIdade(int diaV, int mesV, int anoV) {
 
         int Idade = anoAtual - anoV;
-
-        if (mesV > mesAtual) {
-            Idade -= 1;
-        } else {
-            if (diaV > diaAtual) {
-                Idade -= 1;
+        while (true) {
+            if (mesV >= mesAtual) {
+                if(mesV > mesAtual){
+                    Idade -= 1;
+                    break;
+                }
+                
+                if (diaV > diaAtual) {
+                    Idade -= 1;
+                    break;
+                }
+                
             }
-
+            break;
         }
         System.out.println("idade : " + Idade + " anos");
 
     }
 
     public static void main(String[] args) {
-        Data objetoData = new Data(1, 10, 2021);
+        int diaDig = 0, mesDig = 0, anoDig = 0;
+         System.out.println("Digite uma data: EX: 12/10/2012");
+         Scanner l = new Scanner(System.in);
+         String dataDigitada = l.nextLine();
+         String dataFormatada = dataDigitada.replace("/", "").replace(" ", "").replace("-", "");
+        
+      
 
+         if (dataFormatada.length() == 8) {
+         try {
+         diaDig = Integer.parseInt(dataFormatada.substring(0, 2));
+         mesDig = Integer.parseInt(dataFormatada.substring(2, 4));
+         anoDig = Integer.parseInt(dataFormatada.substring(4, 8));
+         Data objData = new Data(diaDig, mesDig, anoDig);
+                
+                
+         } catch (NumberFormatException e) {
+         System.out.println("Por favor, digite apenas caracteres validos");
+         } catch (Exception e) {
+         System.out.println("Por favor, digite apenas caracteres validos");
+         }
+
+         } else {
+         System.out.println("Por favor digite uma data valida...");
+         }
+         
+       
     }
 
 }
