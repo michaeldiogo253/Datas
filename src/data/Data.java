@@ -16,42 +16,46 @@ public class Data {
     int anoAtual = Integer.parseInt(formatarAno.format(data));
 
     public Data(Integer diaP, Integer mesP, Integer anoP) {
+        while (true) {
+            if (mesP < 1 || mesP > 12) {
 
-        if (mesP < 1 || mesP > 12) {
+                System.out.println("Informe um mes valido.");
+                break;
 
-            System.out.println("Informe um mes valido.");
-
-        }
-
-        if (diaP < 1 && anoP > 31) {
-
-            System.out.println("Tem que ser de 1 a 31!!!");
-
-        }
-
-        if (anoP > anoAtual) {
-
-            System.out.println("Ano invalido");
-
-        }
-        try {
-            if (verificaData(diaP, mesP, anoP)) {
-
-                this.dia = diaP;
-
-                this.mes = mesP;
-
-                this.ano = anoP;
-                calculoIdade(dia, mes, ano);
-
-            } else {
-                System.out.println("data invalida !");
             }
-        } catch (Exception e) {
-            System.out.println("data incorreta !");
-        }
-        ;
 
+            if (diaP < 1 || diaP > 31) {
+
+                System.out.println("Dia incorreto...Tem que ser de 1 a 31!!!");
+                break;
+            }
+
+            if (anoP > anoAtual) {
+
+                System.out.println("Ano invalido");
+                break;
+            }
+            try {
+                if (verificaData(diaP, mesP, anoP)) {
+
+                    this.dia = diaP;
+
+                    this.mes = mesP;
+
+                    this.ano = anoP;
+                    calculoIdade(dia, mes, ano);
+
+                } else {
+                    System.out.println("data invalida !");
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println("data incorreta !");
+                break;
+            }
+            ;
+            break;
+        }
     }
 
     public boolean verificaData(Integer diaV, Integer mesV, Integer anoV) {
@@ -89,7 +93,7 @@ public class Data {
 
             if (anoV % 4 == 0) {
 
-                if (dia <= 29) {
+                if (diaV <= 29) {
 
                     dataCorreta = true;
 
@@ -100,7 +104,7 @@ public class Data {
 
             } else {
 
-                if (dia <= 28) {
+                if (diaV <= 28) {
                     dataCorreta = true;
 
                 } else {
@@ -108,7 +112,7 @@ public class Data {
                 }
             }
         }
-        if (dataCorreta) {
+        if (dataCorreta == true) {
             return true;
         } else {
             return false;
@@ -122,16 +126,16 @@ public class Data {
         int Idade = anoAtual - anoV;
         while (true) {
             if (mesV >= mesAtual) {
-                if(mesV > mesAtual){
+                if (mesV > mesAtual) {
                     Idade -= 1;
                     break;
                 }
-                
+
                 if (diaV > diaAtual) {
                     Idade -= 1;
                     break;
                 }
-                
+
             }
             break;
         }
@@ -140,7 +144,7 @@ public class Data {
     }
 
     public static void main(String[] args) {
-        int diaDig = 0, mesDig = 0, anoDig = 0;
+        /* int diaDig = 0, mesDig = 0, anoDig = 0;
          System.out.println("Digite uma data: EX: 12/10/2012");
          Scanner l = new Scanner(System.in);
          String dataDigitada = l.nextLine();
@@ -153,7 +157,8 @@ public class Data {
          diaDig = Integer.parseInt(dataFormatada.substring(0, 2));
          mesDig = Integer.parseInt(dataFormatada.substring(2, 4));
          anoDig = Integer.parseInt(dataFormatada.substring(4, 8));
-         Data objData = new Data(diaDig, mesDig, anoDig);
+         //Data objData = new Data(diaDig, mesDig, anoDig);
+        
                 
                 
          } catch (NumberFormatException e) {
@@ -166,7 +171,8 @@ public class Data {
          System.out.println("Por favor digite uma data valida...");
          }
          
-       
+         */
+        Data objData = new Data(24, 2, 2018);
     }
 
 }
