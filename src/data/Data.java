@@ -19,31 +19,30 @@ public class Data {
         while (true) {
             if (mesP < 1 || mesP > 12) {
 
-                System.out.println("Informe um mes valido.");
+                System.out.println("Informe um mes valido.\n");
                 break;
 
             }
 
             if (diaP < 1 || diaP > 31) {
 
-                System.out.println("Dia incorreto...Tem que ser de 1 a 31!!!");
+                System.out.println("Dia incorreto...Tem que ser de 1 a 31!!!\n");
                 break;
             }
 
             if (anoP > anoAtual) {
 
-                System.out.println("Ano invalido");
+                System.out.println("Ano invalido! \n");
                 break;
             }
             if (anoP == anoAtual) {
                 if (mesP > mesAtual) {
-                    System.out.println("entrei aki tio mes> ");
-                    System.out.println("Data invalida 1");
+                    System.out.println("Data invalida! \n");
                     break;
                 }
                 if (mesP == mesAtual) {
                     if (diaP > diaAtual) {
-                        System.out.println("Data invalida 2");
+                        System.out.println("Data invalida! \n");
                         break;
                     }
                 }
@@ -60,11 +59,11 @@ public class Data {
                     calculoIdade(dia, mes, ano);
 
                 } else {
-                    System.out.println("Data invalida !");
+                    System.out.println("Data invalida !\n");
                     break;
                 }
             } catch (Exception e) {
-                System.out.println("Data incorreta !");
+                System.out.println("Data incorreta !\n");
                 break;
             }
             ;
@@ -72,13 +71,13 @@ public class Data {
         }
     }
 
-    public boolean verificaData(Integer diaV, Integer mesV, Integer anoV) {
+    public boolean verificaData(Integer diaP, Integer mesP, Integer anoP) {
 
         boolean dataCorreta = false;
 
-        if (mesV == 4 || mesV == 6 || mesV == 9 || mesV == 11) {
+        if (mesP == 4 || mesP == 6 || mesP == 9 || mesP == 11) {
 
-            if (diaV <= 30) {
+            if (diaP <= 30) {
 
                 dataCorreta = true;
 
@@ -89,9 +88,9 @@ public class Data {
 
         }
 
-        if (mesV == 1 || mesV == 3 || mesV == 5 || mesV == 7 || mesV == 8 || mesV == 10 || mesV == 12) {
+        if (mesP == 1 || mesP == 3 || mesP == 5 || mesP == 7 || mesP == 8 || mesP == 10 || mesP == 12) {
 
-            if (diaV <= 31) {
+            if (diaP <= 31) {
 
                 dataCorreta = true;
 
@@ -103,11 +102,11 @@ public class Data {
 
         }
 
-        if (mesV == 2) {
+        if (mesP == 2) {
 
-            if (anoV % 4 == 0 && anoV % 100 != 0 || anoV % 400 == 0) { // regra do ano bissexto
+            if (anoP % 4 == 0 && anoP % 100 != 0 || anoP % 400 == 0) { // regra do ano bissexto
 
-                if (diaV <= 29) {
+                if (diaP <= 29) {
 
                     dataCorreta = true;
 
@@ -118,7 +117,7 @@ public class Data {
 
             } else {
 
-                if (diaV <= 28) {
+                if (diaP <= 28) {
                     dataCorreta = true;
 
                 } else {
@@ -135,62 +134,70 @@ public class Data {
 
     }
 
-    public void calculoIdade(int diaV, int mesV, int anoV) {
+    public void calculoIdade(int diaP, int mesP, int anoP) {
 
-        int Idade = anoAtual - anoV;
+        int idade = anoAtual - anoP;
         while (true) {
-            if (mesV >= mesAtual) {
-                if (mesV > mesAtual) {
-                    Idade -= 1;
+            if (mesP >= mesAtual) {
+                if (mesP > mesAtual) {
+                    idade -= 1;
                     break;
                 }
 
-                if (diaV > diaAtual) {
-                    Idade -= 1;
+                if (diaP > diaAtual) {
+                    idade -= 1;
                     break;
                 }
 
             }
             break;
         }
-        System.out.println("idade : " + Idade + " anos");
+        if (idade > 1) {
+            System.out.println("Idade : " + idade + " anos \n");
+        } else {
+            if (idade < 1) {
+                System.out.println("Voce possui menos de um ano de idade!!! \n");
+            } else {
+                System.out.println("Idade : " + idade + " ano \n");
+            }
+        }
 
     }
 
     public static void main(String[] args) {
-        /* int diaDig = 0, mesDig = 0, anoDig = 0;
-         System.out.println("Digite uma data: EX: 12/10/2012");
-         Scanner l = new Scanner(System.in);
-         String dataDigitada = l.nextLine();
-         String dataFormatada = dataDigitada.replace("/", "").replace(" ", "").replace("-", "");
-        
-      
 
-         if (dataFormatada.length() == 8) {
-         try {
-         diaDig = Integer.parseInt(dataFormatada.substring(0, 2));
-         mesDig = Integer.parseInt(dataFormatada.substring(2, 4));
-         anoDig = Integer.parseInt(dataFormatada.substring(4, 8));
-         //Data objData = new Data(diaDig, mesDig, anoDig);
-        
-                
-                
-         } catch (NumberFormatException e) {
-         System.out.println("Por favor, digite apenas caracteres validos");
-         } catch (Exception e) {
-         System.out.println("Por favor, digite apenas caracteres validos");
-         }
+        while (true) {
+            System.out.println("------------------------------------------------------- ");
+            System.out.println("Para sair digite 0 ");
+            System.out.println("Digite uma data: EX: 12/10/2012 ");
+            System.out.println("------------------------------------------------------- ");
+            int diaDig = 0, mesDig = 0, anoDig = 0;
 
-         } else {
-         System.out.println("Por favor digite uma data valida...");
-         }
-         
-         */
-        Data objData = new Data(5, 6, 2012); //não é bi
-        Data objData1 = new Data(1, 6, 2012); //não é bi
-        Data objData2= new Data(30, 6, 2012); //não é bi
-        Data objDat3 = new Data(31, 6, 2012); //não é bi
-        Data objData4 = new Data(32, 6, 2012); //não é bi
+            Scanner l = new Scanner(System.in);
+            String dataDigitada = l.nextLine();
+            String dataFormatada = dataDigitada.replace("/", "").replace(" ", "").replace("-", "");
+            if (dataFormatada.equals("0")) {
+                break;
+            }
+
+            if (dataFormatada.length() == 8) {
+                try {
+                    diaDig = Integer.parseInt(dataFormatada.substring(0, 2));
+                    mesDig = Integer.parseInt(dataFormatada.substring(2, 4));
+                    anoDig = Integer.parseInt(dataFormatada.substring(4, 8));
+                    Data objData = new Data(diaDig, mesDig, anoDig);
+
+                } catch (NumberFormatException e) {
+                    System.out.println("Por favor, digite apenas caracteres validos");
+                } catch (Exception e) {
+                    System.out.println("Por favor, digite apenas caracteres validos");
+                }
+
+            } else {
+                System.out.println("Por favor digite uma data valida...");
+            }
+
+        }
 
     }
 
